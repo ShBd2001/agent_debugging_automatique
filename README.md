@@ -10,35 +10,3 @@
 | **config.py**     | Gestion des paramètres persistants |
 
 
-Voici un schéma clair de l’architecture du système :
-        ┌──────────────────────────┐
-        │     Interface UI.py      │
-        │       (Streamlit)        │
-        └─────────────┬────────────┘
-                      │
-          Choisit script & venv
-                      │
-                      ▼
-        ┌──────────────────────────┐
-        │     auto_debug.py        │
-        │ Moteur d’auto-débuggage  │
-        └───────┬────────┬─────────┘
-                │        │
-        ┌───────▼────┐   │
-        │ executor.py│   │
-        │ Exécution  │   │
-        └──────┬─────┘   │
-       stdout  │  stderr │
-               ▼         │
-        ┌──────────────────────────┐
-        │     ai_client.py         │
-        │  Envoi code + erreur IA  │
-        └───────────┬──────────────┘
-                    ▼
-            JSON de corrections
-                    │
-                    ▼
-        ┌──────────────────────────┐
-        │      patcher.py          │
-        │  Applique les patchs     │
-        └──────────────────────────┘
