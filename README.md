@@ -1,3 +1,5 @@
+#**Rôle de chaque module :**
+
 | Fichier           | Rôle                               |
 | ----------------- | ---------------------------------- |
 | **ui.py**         | Interface utilisateur              |
@@ -6,3 +8,35 @@
 | **ai_client.py**  | Appel à l’IA + prompt              |
 | **patcher.py**    | Application des patchs             |
 | **config.py**     | Gestion des paramètres persistants |
+
+        ┌──────────────────────────┐
+        │     Interface UI.py      │
+        │       (Streamlit)        │
+        └─────────────┬────────────┘
+                      │
+          Choisit script & venv
+                      │
+                      ▼
+        ┌──────────────────────────┐
+        │     auto_debug.py        │
+        │ Moteur d’auto-débuggage  │
+        └───────┬───────┬─────────┘
+                │       │
+        ┌───────▼───┐   │
+        │ executor.py│   │
+        │ Exécution  │   │
+        └──────┬─────┘   │
+       stdout  │  stderr  │
+              ▼           │
+        ┌──────────────────────────┐
+        │     ai_client.py         │
+        │  Envoi code + erreur IA  │
+        └───────────┬──────────────┘
+                    ▼
+            JSON de corrections
+                    │
+                    ▼
+        ┌──────────────────────────┐
+        │      patcher.py          │
+        │  Applique les patchs     │
+        └──────────────────────────┘
